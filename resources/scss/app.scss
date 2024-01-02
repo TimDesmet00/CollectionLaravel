@@ -1,3 +1,13 @@
-body{
-    background-color: antiquewhite;
+@import "vendor/normalize";
+
+@import "components/header";
+@import "components/main";
+@import "components/footer";
+
+body
+{
+    background: rgb(201,101,103);
+    background: linear-gradient(180deg, rgba(201,101,103,1) 27%, rgba(158,90,99,1) 66%, rgba(100,78,91,1) 100%);
+    background-repeat: no-repeat;
+    margin: 0 10%;
 }

@@ -1,0 +1,45 @@
+@import "card";
+
+main
+{
+    h2{
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        padding-bottom: 1em;
+        color: #97AABD;
+    }
+    .card{
+        margin: 20px 0;
+        background-color: #314455;
+    }
+    
+}
+
+@media only screen and (min-width: 612px){
+    main{
+        .card-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap : 5%;
+            .card{
+                margin: 0;  
+            }
+        }
+        
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    main{
+        .card-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap : 5%;
+            .card{
+                margin: 0;  
+            }
+        }
+        
+    }
+}

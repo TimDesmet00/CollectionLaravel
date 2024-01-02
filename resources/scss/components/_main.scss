@@ -4,7 +4,6 @@
 
 main
 {
-    // margin-bottom: 1em;
     h2
     {
         font-size: 2rem;
@@ -15,7 +14,7 @@ main
     }
     .card
     {
-        // margin: 20px 0;
+        margin: 20px 0;
         background-color: #314455;
     }
 }
@@ -23,13 +22,11 @@ main
 @media only screen and (min-width: 612px)
 {
     main{
-        // margin-bottom: 7em;
         .card-container{
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap : 5%;
             .card{
-                margin: 0;  
+                margin: 20px 5%;  
             }
         } 
     }
@@ -38,13 +35,11 @@ main
 @media only screen and (min-width: 1024px)
 {
     main{
-        // margin-bottom: 2em;
         .card-container{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap : 5%;
             .card{
-                margin: 0;  
+                margin: 20px 5%;  
             }
         }
     }

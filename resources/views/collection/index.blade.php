@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>Acceuil</h2>
+<h2>Accueil</h2>
 <section class="card-container">
     @foreach ($collections as $item)
         <div class="card">

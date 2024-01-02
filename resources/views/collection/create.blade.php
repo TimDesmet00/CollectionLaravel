@@ -54,6 +54,6 @@
 </div>
 
 <div>
-    <input type="submit" value="Ajouter">
+    <input class="btn" type="submit" value="Ajouter">
 </div>
 @endsection

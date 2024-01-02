@@ -18,7 +18,7 @@
         <form action="{{ route('collection.destroy', $collection->id) }}" method="post">
             @csrf
             @method('DELETE')
-            <input type="submit" value="Supprimer">
+            <input class="btn" type="submit" value="Supprimer">
         </form>
     </div>
 </article>

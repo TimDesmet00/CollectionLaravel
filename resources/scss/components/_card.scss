@@ -12,6 +12,7 @@
         font-size: 1.5rem;
         font-weight: 700;
         text-align: center;
+        padding: 0.7em 0;
     }
     .img
     {
@@ -23,8 +24,11 @@
             margin: 0 auto;
         }
     }
-    
 
+    p{
+        padding: 0.5em 0;
+    }
+    
     .link
     {
         display: flex;

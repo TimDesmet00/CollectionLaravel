@@ -3,7 +3,7 @@
 @section('content')
 <h2>Ajoutez un Anime</h2>
 
-<form action="/collection/create" method="post">
+<form action="/collection/create" method="post" class="form-container">
 @csrf
 
 <div>

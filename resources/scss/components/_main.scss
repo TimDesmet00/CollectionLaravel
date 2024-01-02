@@ -2,22 +2,26 @@
 
 main
 {
-    h2{
+    margin-bottom: 1em;
+    h2
+    {
         font-size: 2rem;
         font-weight: 700;
         text-align: center;
         padding-bottom: 1em;
         color: #97AABD;
     }
-    .card{
+    .card
+    {
         margin: 20px 0;
         background-color: #314455;
     }
-    
 }
 
-@media only screen and (min-width: 612px){
+@media only screen and (min-width: 612px)
+{
     main{
+        margin-bottom: 7em;
         .card-container{
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -25,13 +29,14 @@ main
             .card{
                 margin: 0;  
             }
-        }
-        
+        } 
     }
 }
 
-@media only screen and (min-width: 1024px){
+@media only screen and (min-width: 1024px)
+{
     main{
+        margin-bottom: 2em;
         .card-container{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -40,6 +45,5 @@ main
                 margin: 0;  
             }
         }
-        
     }
 }

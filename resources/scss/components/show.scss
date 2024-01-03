@@ -1,0 +1,37 @@
+.show
+{
+    color: #97AABD;
+    font-size: 1.2em;
+    .full
+    {
+        font-size: 3rem;
+        text-decoration: underline;
+        font-weight: 700;
+        text-align: center;
+        padding-bottom: 1em;
+    }
+
+    .img
+    {
+        text-align: center;
+        img
+        {
+            width: 60%;
+            height: auto;
+            margin: 0 auto;
+        }
+    }
+
+    .info
+    {
+        padding: 0.5em 0;
+    }
+
+    .link
+    {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 1em 0;
+        scale: 1.2;
+    }
+}

@@ -3,14 +3,17 @@
 @section('content')
 
 <article class="show">
-    <h2>{{ $collection->shortname }}</h2>
-    <p>{{ $collection->fullname }}</p>
-    <img src="{{ $collection->image }}" alt="{{ $collection->shortname }}">
-    <p>{{ $collection->firstgender }}</p>
-    <p>{{ $collection->secondgender }}</p>
-    <p>{{ $collection->thirdgender }}</p>
-    <p>{{ $collection->year }}</p>
-    <p>{{ $collection->description }}</p>
+    <!-- <h2>{{ $collection->shortname }}</h2> -->
+    <p class="full">{{ $collection->fullname }}</p>
+    <div class="img">
+        <img src="{{ asset('img/' . $collection->image) }}" alt="{{ $collection->shortname }}">
+    </div>
+    <p class="info"> Genre: {{ $collection->firstgender }} 
+        @if(!empty($collection->secondgender)) / {{ $collection->secondgender }} @endif
+        @if(!empty($collection->thirdgender)) / {{ $collection->thirdgender }} @endif
+    </p>
+    <p class="info">Sortie en: {{ $collection->year }}</p>
+    <p class="info">Synopsis: {{ $collection->description }}</p>
     <div class="link">
         <button class="btn" onclick="location.href='{{ $collection->link }}'">Info</button>
         <button class="btn" onclick="location.href='{{ route('collection.edit', $collection->id) }}'">Modifier</button>

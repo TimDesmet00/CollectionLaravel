@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +19,20 @@ Route::get('/', function () {
     return view('Layout');
 });
 
-Route::get('collection', [CollectionController::class, 'index'])->name('collection.index');
+Route::prefix('collection')->group(function () {
+    Route::get('/', [CollectionController::class, 'index'])->name('collection.index');
+    Route::get('create', [CollectionController::class, 'create'])->name('collection.create');
+    Route::post('create', [CollectionController::class, 'store'])->name('collection.store');
+    Route::get('{collection}', [CollectionController::class, 'show'])->name('collection.show');
+    Route::get('{collection}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
+    Route::put('{collection}', [CollectionController::class, 'update'])->name('collection.update');
+    Route::delete('{collection}', [CollectionController::class, 'destroy'])->name('collection.destroy');
+});
 
-Route::get('collection/create', [CollectionController::class, 'create'])->name('collection.create');
-
-Route::post('collection/create', [CollectionController::class, 'store'])->name('collection.store');
-
-Route::get('collection/{collection}', [CollectionController::class, 'show'])->name('collection.show');
-
-Route::get('collection/{collection}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
-
-Route::put('collection/{collection}', [CollectionController::class, 'update'])->name('collection.update');
-
-Route::delete('collection/{collection}', [CollectionController::class, 'destroy'])->name('collection.destroy');
+Route::prefix('user')->group(function () {
+    Route::get('create', [UserController::class, 'create'])->name('user.create');
+    Route::post('create', [UserController::class, 'store'])->name('user.store');
+    Route::get('{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('{user}', [UserController::class, 'destroy'])->name('user.destroy');
+});

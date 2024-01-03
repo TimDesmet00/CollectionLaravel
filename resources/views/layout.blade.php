@@ -12,7 +12,7 @@
     <body>
         <header>
             @include('components.navbar')
-
+            
             <h1>Collection Laravel</h1>
             
         </header>

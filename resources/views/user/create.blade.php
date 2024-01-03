@@ -3,7 +3,7 @@
 @section('content')
 <h2>Inscription</h2>
 
-<form action="/user/create" method="post" class="form-container">
+<form action="/user/create" method="post" class="form-container form-user">
     @csrf
 
     <div>

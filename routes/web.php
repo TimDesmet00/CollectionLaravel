@@ -15,12 +15,12 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('Layout');
-});
-
+// Route::get('/', function () {
+//     return view('layout');
+// });
+Route::get('/', [CollectionController::class, 'index'])->name('collection.index');
 Route::prefix('collection')->group(function () {
-    Route::get('/', [CollectionController::class, 'index'])->name('collection.index');
+    
     Route::get('create', [CollectionController::class, 'create'])->name('collection.create')->middleware('auth');
     Route::post('create', [CollectionController::class, 'store'])->name('collection.store')->middleware('auth');
     Route::get('{collection}', [CollectionController::class, 'show'])->name('collection.show');

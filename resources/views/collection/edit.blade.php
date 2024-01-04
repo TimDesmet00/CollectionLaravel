@@ -4,7 +4,7 @@
 
 <h2>Modifier {{ $collection->shortname }}</h2>
 
-<form action="{{route('collection.update', $collection->id)}}" method="post" class="form-container">
+<form action="{{route('collection.update', $collection->id)}}" method="post" class="form-container" enctype="multipart/form-data">
         @csrf
         @method('put')
 
@@ -19,8 +19,8 @@
         </div>
 
         <div>
-            <label for="image">Chemin Image:</label>
-            <input type="text" name="image" id="image" value="{{ $collection->image }}">
+            <label for="image">Image:</label>
+            <input type="file" name="image" id="image" value="{{ $collection->image }}">
         </div>
 
         <div>

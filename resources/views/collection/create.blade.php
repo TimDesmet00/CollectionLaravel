@@ -3,7 +3,7 @@
 @section('content')
 <h2>Ajoutez un Anime</h2>
 
-<form action="/collection/create" method="post" class="form-container">
+<form action="/collection/create" method="post" class="form-container" enctype="multipart/form-data">
 @csrf
 
 <div>
@@ -17,8 +17,8 @@
 </form>
 
 <div>
-    <label for="image">Chemin Image:</label>
-    <input type="text" name="image" id="image" placeholder="Chemin Image">
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image" placeholder="Image">
 </div>
 
 <div>

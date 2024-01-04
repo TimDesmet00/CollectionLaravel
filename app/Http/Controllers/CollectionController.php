@@ -38,7 +38,7 @@ class CollectionController extends Controller
         $this->validate($request, [
             'shortname' => 'required|string|max:50',
             'fullname' => 'required|string|max:255',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
             'firstgender'=> 'required|string',
             'secondgender'=> 'nullable|string',
             'thirdgender'=> 'nullable|string',
@@ -51,7 +51,11 @@ class CollectionController extends Controller
 
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
-        $collection->image = $request->image;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('img', 'public');
+            $collection->image = $imagePath;
+        }
+        // $collection->image = $request->image;
         $collection->firstgender = $request->firstgender;
         $collection->secondgender = $request->secondgender;
         $collection->thirdgender = $request->thirdgender;
@@ -98,7 +102,7 @@ class CollectionController extends Controller
         $this->validate($request, [
             'shortname' => 'required|string|max:50',
             'fullname' => 'required|string|max:255',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
             'firstgender'=> 'required|string',
             'secondgender'=> 'nullable|string',
             'thirdgender'=> 'nullable|string',
@@ -109,7 +113,10 @@ class CollectionController extends Controller
 
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
-        $collection->image = $request->image;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('img', 'public');
+            $collection->image = $imagePath;
+        }
         $collection->firstgender = $request->firstgender;
         $collection->secondgender = $request->secondgender;
         $collection->thirdgender = $request->thirdgender;

@@ -8,7 +8,7 @@
         <div class="card">
             <h3>{{ $item->shortname }}</h3>
             <div class="img">
-                <img src="{{ asset('img/' . $item->image) }}" alt="{{ $item->shortname }}">
+                <img src="{{ Storage::url($item->image) }}" alt="{{ $item->shortname }}">
             </div>
             <p> Genre: {{ $item->firstgender }} 
                 @if(!empty($item->secondgender)) / {{ $item->secondgender }} @endif

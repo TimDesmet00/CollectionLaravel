@@ -17,6 +17,7 @@
                     {{ session('success') }}
                 </div>
             @endif
+            
             <h1>Collection Laravel</h1>
             
         </header>

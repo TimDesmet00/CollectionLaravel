@@ -52,6 +52,8 @@ class UserController extends Controller
 
         $user->save();
 
+        $user->sendEmailVerificationNotification();
+
         return redirect()->route('user.create')->with('success', 'Utilisateur ajouté avec succès !');
     }
 

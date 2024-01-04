@@ -3,9 +3,10 @@
 @section('content')
 
 <h2>Connection</h2>
-@csrf
 
-<form action="" method="post" class="form-container form-user">
+
+<form action="login" method="post" class="form-container form-user">
+@csrf
 
     <div>
         <label for="email">Email:</label>

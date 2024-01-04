@@ -111,10 +111,13 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials))
         {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('collection.index')->with('success', 'Vous êtes connecté !');
         }
 
-        return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect !');
+        // return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect !');
+        return back()->withErrors([
+            'email' => 'Email ou mot de passe incorrect !',
+        ]);
     }
 
     public function logout()

@@ -21,20 +21,20 @@ Route::get('/', function () {
 
 Route::prefix('collection')->group(function () {
     Route::get('/', [CollectionController::class, 'index'])->name('collection.index');
-    Route::get('create', [CollectionController::class, 'create'])->name('collection.create');
-    Route::post('create', [CollectionController::class, 'store'])->name('collection.store');
+    Route::get('create', [CollectionController::class, 'create'])->name('collection.create')->middleware('auth');
+    Route::post('create', [CollectionController::class, 'store'])->name('collection.store')->middleware('auth');
     Route::get('{collection}', [CollectionController::class, 'show'])->name('collection.show');
-    Route::get('{collection}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
-    Route::put('{collection}', [CollectionController::class, 'update'])->name('collection.update');
-    Route::delete('{collection}', [CollectionController::class, 'destroy'])->name('collection.destroy');
+    Route::get('{collection}/edit', [CollectionController::class, 'edit'])->name('collection.edit')->middleware('auth');
+    Route::put('{collection}', [CollectionController::class, 'update'])->name('collection.update')->middleware('auth');
+    Route::delete('{collection}', [CollectionController::class, 'destroy'])->name('collection.destroy')->middleware('auth');
 });
 
 Route::prefix('user')->group(function () {
     Route::get('create', [UserController::class, 'create'])->name('user.create');
     Route::post('create', [UserController::class, 'store'])->name('user.store');
-    Route::get('{user}', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('{user}', [UserController::class, 'update'])->name('user.update');
-    Route::delete('{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
+    Route::put('{user}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
+    Route::delete('{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
 });
 
 Route::get('login', [UserController::class, 'loginForm'])->name('user.login');

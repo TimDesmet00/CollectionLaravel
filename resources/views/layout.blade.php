@@ -12,7 +12,11 @@
     <body>
         <header>
             @include('components.navbar')
-            
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <h1>Collection Laravel</h1>
             
         </header>

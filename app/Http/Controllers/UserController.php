@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
@@ -97,5 +98,29 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials))
+        {
+            return redirect()->intended('dashboard');
+        }
+
+        return redirect()->route('user.login')->with('error', 'Email ou mot de passe incorrect !');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('user.login')->with('success', 'Vous êtes déconnecté !');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['login', 'store', 'create']);
     }
 }

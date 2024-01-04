@@ -18,7 +18,7 @@
         <button class="btn" onclick="location.href='{{ $collection->link }}'">Info</button>
         <button class="btn" onclick="location.href='{{ route('collection.edit', $collection->id) }}'">Modifier</button>
         <button class="btn" onclick="location.href='{{ route('collection.index') }}'">Retour</button>
-        <form action="{{ route('collection.destroy', $collection->id) }}" method="post">
+        <form action="{{ route('collection.destroy', $collection->id) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette collection ?')">
             @csrf
             @method('DELETE')
             <input class="btn" type="submit" value="Supprimer">

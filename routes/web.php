@@ -36,3 +36,7 @@ Route::prefix('user')->group(function () {
     Route::put('{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('{user}', [UserController::class, 'destroy'])->name('user.destroy');
 });
+
+Route::get('login', [UserController::class, 'loginForm'])->name('user.login');
+Route::post('login', [UserController::class, 'login']);
+Route::post('logout', [UserController::class, 'logout'])->name('logout');

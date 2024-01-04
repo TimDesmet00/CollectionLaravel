@@ -100,6 +100,11 @@ class UserController extends Controller
         //
     }
 
+    public function loginForm()
+    {
+        return view('user.login');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -109,7 +114,7 @@ class UserController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        return redirect()->route('user.login')->with('error', 'Email ou mot de passe incorrect !');
+        return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect !');
     }
 
     public function logout()
@@ -121,6 +126,6 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['login', 'store', 'create']);
+        $this->middleware('auth')->except(['loginForm', 'login', 'store', 'create']);
     }
 }

@@ -1,5 +1,7 @@
 ### Collection Laravel
 
+exercices dans le cadre de la formation BeCode pour approfondir mes connaissances avec Laravel et vite (javascript et Sass)
+
 ## Authors
 
 - [Tim Desmet](https://github.com/TimDesmet00)

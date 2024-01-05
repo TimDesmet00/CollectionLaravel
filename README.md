@@ -1,6 +1,17 @@
 ### Collection Laravel
 
+## Authors
 
+- [Tim Desmet](https://github.com/TimDesmet00)
+
+
+## Deployment
+
+https://timdesmet00.github.io/weather-app/
+
+## Tech Stack
+
+HTML, SASS, Javascript
 
 
 

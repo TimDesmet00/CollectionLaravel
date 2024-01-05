@@ -13,18 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table)
+        {
             $table->id();
             $table->string('shortname', 50);
             $table->string('fullname', 255);
-            $table->string('image', 255)->nullable();
-            $table->string('firstgender');
-            $table->string('secondgender')->nullable();
-            $table->string('thirdgender')->nullable();
+            $table->string('slug', 255)->unique();
+            $table->integer('id_image')->nullable();
+            $table->integer('id_user');
             $table->integer('year');
             $table->text('description');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_image')->references('id')->on('images')->onDelete('cascade');
         });
     }
 

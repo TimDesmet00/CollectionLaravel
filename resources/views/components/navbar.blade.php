@@ -1,6 +1,9 @@
 <nav class="navbar">
     <a href="{{ route('collection.index') }}">Accueil</a>
     <a href="{{ route('collection.create') }}">Ajoutez</a>
+    @if(Auth::check())
+        <a href="{{ route('user.show', ['id' => Auth::id()]) }}">Profil</a>
+    @endif
     <div class="connect">
         @if(Auth::check())
             <span class="user-name">Bonjour {{ Auth::user()->name }}</span>

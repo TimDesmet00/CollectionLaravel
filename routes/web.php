@@ -34,7 +34,8 @@ Route::prefix('collection')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('create', [UserController::class, 'create'])->name('user.create');
     Route::post('create', [UserController::class, 'store'])->name('user.store');
-    Route::get('{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['auth', 'verified']);
+    Route::get('show/{id}', [UserController::class, 'show'])->name('user.show')->middleware(['auth', 'verified']);
+    Route::get('{user}/edit', [UserController::class, 'edit'])->name('user.edit')->middleware(['auth', 'verified']);
     Route::put('{user}', [UserController::class, 'update'])->name('user.update')->middleware(['auth', 'verified']);
     Route::delete('{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'verified']);
 });

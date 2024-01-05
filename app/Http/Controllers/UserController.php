@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view ('user.show', ['user' => User::findOrFail($id)]);
     }
 
     /**
@@ -126,7 +126,7 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('user.login')->with('success', 'Vous êtes déconnecté !');
+        return redirect()->route('collection.index')->with('success', 'Vous êtes déconnecté !');
     }
 
     public function __construct()

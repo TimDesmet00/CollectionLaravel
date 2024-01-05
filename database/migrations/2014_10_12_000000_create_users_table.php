@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('biographie')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('id_avatar')->references('id')->on('images')->onDelete('cascade');
         });
     }
 

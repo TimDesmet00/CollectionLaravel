@@ -17,7 +17,11 @@
                     {{ session('success') }}
                 </div>
             @endif
-            
+            @if (session('message'))
+                <div class="alert alert-info">
+                    {{ session('message') }}
+                </div>
+            @endif
             <h1>Collection Laravel</h1>
             
         </header>

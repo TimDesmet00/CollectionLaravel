@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required|string|max:50',
-            'email'=> 'required|string|max:255',
+            'email'=> 'required|string|max:255|unique:users',
             'password'=> 'required|string|max:255',
         ]);
 
@@ -54,7 +54,7 @@ class UserController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return redirect()->route('user.create')->with('success', 'Utilisateur ajouté avec succès !');
+        return redirect()->route('collection.index')->with('success', 'Utilisateur ajouté avec succès, vérifier vos e-mails !');
     }
 
     /**

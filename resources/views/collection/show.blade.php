@@ -6,7 +6,7 @@
     <!-- <h2>{{ $collection->shortname }}</h2> -->
     <p class="full">{{ $collection->fullname }}</p>
     <div class="img">
-        <img src="{{ asset('img/' . $collection->image) }}" alt="{{ $collection->shortname }}">
+        <img src="{{ Storage::url($collection->image) }}" alt="{{ $collection->shortname }}">
     </div>
     <p class="info"> Genre: {{ $collection->firstgender }} 
         @if(!empty($collection->secondgender)) / {{ $collection->secondgender }} @endif

@@ -1,3 +1,22 @@
+### Collection Laravel
+
+exercices dans le cadre de la formation BeCode pour approfondir mes connaissances avec Laravel et vite (javascript et Sass)
+
+## Authors
+
+- [Tim Desmet](https://github.com/TimDesmet00)
+
+
+## Deployment
+
+https://timdesmet00.github.io/weather-app/
+
+## Tech Stack
+
+HTML, SASS, Javascript
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

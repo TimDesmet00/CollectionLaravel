@@ -17,12 +17,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layout');
-// });
+//route pour la page d'accueil
 Route::get('/', [CollectionController::class, 'index'])->name('collection.index');
+
+//route pour les collections
 Route::prefix('collection')->group(function () {
-    
     Route::get('create', [CollectionController::class, 'create'])->name('collection.create')->middleware(['auth', 'verified']);
     Route::post('create', [CollectionController::class, 'store'])->name('collection.store')->middleware(['auth', 'verified']);
     Route::get('{collection}', [CollectionController::class, 'show'])->name('collection.show');
@@ -31,6 +30,7 @@ Route::prefix('collection')->group(function () {
     Route::delete('{collection}', [CollectionController::class, 'destroy'])->name('collection.destroy')->middleware(['auth', 'verified']);
 });
 
+//route pour les utilisateurs
 Route::prefix('user')->group(function () {
     Route::get('create', [UserController::class, 'create'])->name('user.create');
     Route::post('create', [UserController::class, 'store'])->name('user.store');
@@ -40,10 +40,12 @@ Route::prefix('user')->group(function () {
     Route::delete('{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'verified']);
 });
 
+//route pour les login/logout
 Route::get('login', [UserController::class, 'loginForm'])->name('user.login');
 Route::post('login', [UserController::class, 'login']);
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
+//route pour les validation d'e-mail
 Route::get('/email/verify', function () {
     return redirect('/')->with('message', 'Veuillez vérifier votre adresse email');
 })->middleware('auth')->name('verification.notice');

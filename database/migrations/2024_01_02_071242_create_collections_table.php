@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('fullname', 255);
             $table->string('slug', 255)->unique();
             $table->foreignId('image_id')->constrainted()->onDelete('cascade');
-            $table->integer('user_id');
+            $table->foreign_id('user_id')->constrainted()->onDelete('cascade');
             $table->integer('year');
             $table->text('description');
             $table->string('link')->nullable();

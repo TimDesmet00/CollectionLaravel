@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function collections()
+    public function favoriteCollections()
     {
         return $this->belongsToMany(Collection::class);
     }
@@ -51,4 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Image::class);
     }
+
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
+
+    
 }

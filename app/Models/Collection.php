@@ -22,4 +22,14 @@ class Collection extends Model
         'description',
         'link'
     ];
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

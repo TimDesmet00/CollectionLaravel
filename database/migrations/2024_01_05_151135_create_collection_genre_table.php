@@ -16,12 +16,9 @@ return new class extends Migration
         Schema::create('genre_collection', function (Blueprint $table)
         {
             $table->id();
-            $table->integer('id_genre');
-            $table->integer('id_collection');
+            $table->foreignId('collection_id')->constrained()->onDelete('cascade');
+            $table->foreignId('genre_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('id_genre')->references('id')->on('genres')->onDelete('cascade');
-            $table->foreign('id_collection')->references('id')->on('collections')->onDelete('cascade');
         });
     }
 

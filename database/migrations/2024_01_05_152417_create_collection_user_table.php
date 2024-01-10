@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('favoris', function (Blueprint $table) {
+        Schema::create('collection_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
-            $table->integer('id_collection');
+            $table->foreignId('collection_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_collection')->references('id')->on('collections')->onDelete('cascade');
         });
     }
 

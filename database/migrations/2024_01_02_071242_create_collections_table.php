@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('shortname', 50);
             $table->string('fullname', 255);
             $table->string('slug', 255)->unique();
-            $table->integer('id_image')->nullable();
-            $table->integer('id_user');
+            $table->integer('image_id')->nullable();
+            $table->integer('user_id');
             $table->integer('year');
             $table->text('description');
             $table->string('link')->nullable();

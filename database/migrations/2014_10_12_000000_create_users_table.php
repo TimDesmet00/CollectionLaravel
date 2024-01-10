@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignId('image_id')->constrainted()->onDelete('cascade');
-            $table->string('biography')->nullable();
+            $table->longtext('biography')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('image_id')->constrainted()->onDelete('cascade');
+            $table->foreignId('image_id')->nullable()->constrainted()->onDelete('cascade');
             $table->longtext('biography')->nullable();
             $table->rememberToken();
             $table->timestamps();

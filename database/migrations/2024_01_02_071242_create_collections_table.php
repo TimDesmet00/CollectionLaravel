@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('shortname', 50);
             $table->string('fullname', 255);
             $table->string('slug', 191)->unique();
-            $table->foreignId('image_id')->constrainted()->onDelete('cascade');
+            $table->foreignId('image_id')->nullable()->constrainted()->onDelete('cascade');
             $table->unsignedBigInteger('id_user');
             $table->foreignId('user_id')->constrainted()->onDelete('cascade');
             $table->integer('year');

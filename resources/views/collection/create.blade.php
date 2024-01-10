@@ -14,26 +14,11 @@
 <div>
     <label for="fullname">Nom Complet:</label>
     <input type="text" name="fullname" id="fullname" placeholder="Nom complet">
-</form>
+</div>
 
 <div>
     <label for="image">Image:</label>
     <input type="file" name="image" id="image" placeholder="Image">
-</div>
-
-<div>
-    <label for="firstgender">Premier Genre:</label>
-    <input type="text" name="firstgender" id="firstgender" placeholder="Premier genre">
-</div>
-
-<div>
-    <label for="secondgender">Deuxième Genre:</label>
-    <input type="text" name="secondgender" id="secondgender" placeholder="Deuxième genre">
-</div>
-
-<div>
-    <label for="thirdgender">Troisième Genre:</label>
-    <input type="text" name="thirdgender" id="thirdgender" placeholder="Troisième genre">
 </div>
 
 <div>
@@ -56,4 +41,5 @@
 <div>
     <input class="btn" type="submit" value="Ajouter">
 </div>
+</form>
 @endsection

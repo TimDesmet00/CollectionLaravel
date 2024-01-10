@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Image;
 
 class UserController extends Controller
 {
@@ -41,6 +42,8 @@ class UserController extends Controller
             'name'=> 'required|string|max:50',
             'email'=> 'required|string|max:255|unique:users',
             'password'=> 'required|string|max:255',
+            'image_id'=> 'nullable|integer',
+            'biography'=> 'nullable|string',
         ]);
 
         $user = new User();
@@ -49,6 +52,15 @@ class UserController extends Controller
         $user->email = $request->email;
         $password = $request->password;
         $user->password = Hash::make($password);
+        if ($request->has('image_id')) {
+            $image = Image::find($request->image_id);
+            if ($image) {
+                $user->image()->associate($image);
+            } else {
+                // Handle the case where the image does not exist
+            }
+        }
+        $user->biography = $request->biography;
 
         $user->save();
 

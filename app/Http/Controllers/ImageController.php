@@ -35,7 +35,20 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+        ]);
+
+        $image = new Image();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('img', 'public');
+            $image->image = $imagePath;
+        }
+
+        $image->save();
+
+        return redirect()->route('collection.index')->with('success', 'Image ajoutée avec succès !');
     }
 
     /**
@@ -69,7 +82,9 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+        ]);
     }
 
     /**
@@ -80,6 +95,8 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image->delete();
+
+        return redirect()->route('collection.index')->with('success', 'Image supprimée avec succès !');
     }
 }

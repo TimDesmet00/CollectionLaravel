@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
@@ -38,27 +40,28 @@ class CollectionController extends Controller
         $this->validate($request, [
             'shortname' => 'required|string|max:50',
             'fullname' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-            'firstgender'=> 'required|string',
-            'secondgender'=> 'nullable|string',
-            'thirdgender'=> 'nullable|string',
+            'slug' => 'required|string|max:255|unique:collections',
+            'image_id' => 'nullable|integer',
+            'user_id' => 'required|integer',
             'year'=> 'required|integer',
             'description' => 'required',
-            'link' => 'required'
+            'link' => 'nullable|string'
         ]);
 
         $collection = new Collection();
 
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('img', 'public');
-            $collection->image = $imagePath;
+        $collection->slug = $request->slug;
+        if ($request->has('image_id')) {
+            $image = Image::find($request->image_id);
+            if ($image) {
+                $collection->image()->associate($image);
+            } else {
+                // Handle the case where the image does not exist
+            }
         }
-        // $collection->image = $request->image;
-        $collection->firstgender = $request->firstgender;
-        $collection->secondgender = $request->secondgender;
-        $collection->thirdgender = $request->thirdgender;
+        $collection->user_id = auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
         $collection->link = $request->link;
@@ -102,24 +105,26 @@ class CollectionController extends Controller
         $this->validate($request, [
             'shortname' => 'required|string|max:50',
             'fullname' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-            'firstgender'=> 'required|string',
-            'secondgender'=> 'nullable|string',
-            'thirdgender'=> 'nullable|string',
+            'slug' => 'required|string|max:255|unique:collections',
+            'image_id' => 'nullable|integer',
+            'user_id' => 'required|integer',
             'year'=> 'required|integer',
             'description' => 'required',
-            'link' => 'required'
+            'link' => 'nullable|string'
         ]);
 
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('img', 'public');
-            $collection->image = $imagePath;
+        $collection->slug = $request->slug;
+        if ($request->has('image_id')) {
+            $image = Image::find($request->image_id);
+            if ($image) {
+                $collection->image()->associate($image);
+            } else {
+                // Handle the case where the image does not exist
+            }
         }
-        $collection->firstgender = $request->firstgender;
-        $collection->secondgender = $request->secondgender;
-        $collection->thirdgender = $request->thirdgender;
+        $collection->user_id = auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
         $collection->link = $request->link;

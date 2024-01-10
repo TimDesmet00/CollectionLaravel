@@ -20,12 +20,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('id_avatar')->nullable();
+            $table->foreignId('image_id')->constrainted()->onDelete('cascade');
             $table->string('biographie')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('id_avatar')->references('id')->on('images')->onDelete('cascade');
         });
     }
 

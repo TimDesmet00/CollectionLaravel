@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('shortname', 50);
             $table->string('fullname', 255);
             $table->string('slug', 255)->unique();
-            $table->integer('image_id')->nullable();
+            $table->foreignId('image_id')->constrainted()->onDelete('cascade');
             $table->integer('user_id');
             $table->integer('year');
             $table->text('description');
@@ -27,7 +27,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_image')->references('id')->on('images')->onDelete('cascade');
         });
     }
 

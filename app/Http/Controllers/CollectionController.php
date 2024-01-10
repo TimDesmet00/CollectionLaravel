@@ -61,7 +61,7 @@ class CollectionController extends Controller
                 // Handle the case where the image does not exist
             }
         }
-        $collection->user_id = auth::id();
+        $collection->user_id = Auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
         $collection->link = $request->link;

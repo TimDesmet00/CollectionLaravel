@@ -22,7 +22,15 @@
     </div>
 
     <div>
+        <label for="biography">Biographie:</label>
+    </div>
+    <div>
+        <textarea name="biography" id="biography" cols="30" rows="10" placeholder="Biographie"></textarea>
+    </div>
+    
+    <div>
         <input class="btn" type="submit" value="Ajouter">
+    </div>
         
 </form>
 

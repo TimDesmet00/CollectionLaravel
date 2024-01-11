@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class CollectionController extends Controller
 {
@@ -42,9 +43,15 @@ class CollectionController extends Controller
     {
         
         $this->validate($request, [
-            'shortname' => 'required|string|max:50|unique:collections',
+            'shortname' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('collections')->ignore($collection->id),
+            ],
             'fullname' => 'required|string|max:255',
             'image_id' => 'nullable|integer',
+            'genres' => 'nullable|array',
             'year'=> 'required|integer',
             'description' => 'required',
             'link' => 'nullable|string'
@@ -55,22 +62,22 @@ class CollectionController extends Controller
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
         $collection->slug = $request->shortname;
-        if ($request->has('image_id')) {
-            $image = Image::find($request->image_id);
-            if ($image) {
-                $collection->image()->associate($image);
-            } else {
-                // Handle the case where the image does not exist
-            }
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = storage_path('app/public/img/' . $filename);
+            $image->move(storage_path('app/public/img/'), $filename);
+        
+            $savedImage = Image::create(['name' => $filename]);
+            $collection->image()->associate($savedImage);
         }
+
         if ($request->has('genres')) {
-            foreach ($request->genres as $genre_id) {
-                $genre = Genre::find($genre_id);
-                if ($genre) {
-                    $collection->genres()->attach($genre);
-                }
-            }
+            $genre_ids = array_map('intval', $request->genres);
+            $collection->genres()->sync($genre_ids);
         }
+        
         $collection->user_id = Auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
@@ -121,33 +128,48 @@ class CollectionController extends Controller
     public function update(Request $request, Collection $collection)
     {
         $this->validate($request, [
-            'shortname' => 'required|string|max:50',
+            'shortname' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('collections')->ignore($collection->id),
+            ],
             'fullname' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:collections',
             'image_id' => 'nullable|integer',
-            'user_id' => 'required|integer',
+            'genres' => 'nullable|array',
             'year'=> 'required|integer',
             'description' => 'required',
             'link' => 'nullable|string'
         ]);
 
+        // dd(request()->all());
+
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
         $collection->slug = $request->shortname;
-        if ($request->has('image_id')) {
-            $image = Image::find($request->image_id);
-            if ($image) {
-                $collection->image()->associate($image);
-            } else {
-                // Handle the case where the image does not exist
-            }
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = storage_path('app/public/img/' . $filename);
+            $image->move(storage_path('app/public/img/'), $filename);
+        
+            $savedImage = Image::create(['name' => $filename]);
+            $collection->image()->associate($savedImage);
         }
-        $collection->user_id = auth::id();
+
+        if ($request->has('genres')) {
+            $genre_ids = array_map('intval', $request->genres);
+            $collection->genres()->sync($genre_ids);
+        }
+
+        $collection->user_id = Auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
         $collection->link = $request->link;
 
         $collection->save();
+        
 
         return redirect()->route('collection.index');
     }

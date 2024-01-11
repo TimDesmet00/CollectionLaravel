@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genre_collection', function (Blueprint $table)
+        Schema::create('collection_genre', function (Blueprint $table)
         {
             $table->id();
             $table->foreignId('collection_id')->constrained()->onDelete('cascade');

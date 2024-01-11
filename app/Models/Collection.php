@@ -33,9 +33,9 @@ class Collection extends Model
     }
 
 
-    public function images()
+    public function image()
     {
-        return $this->hasOne(Image::class);
+        return $this->belongsTo(Image::class);
     }
 
     public function user()

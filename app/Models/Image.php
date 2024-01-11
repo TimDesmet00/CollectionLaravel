@@ -15,4 +15,9 @@ class Image extends Model
     {
         return $this->hasMany(Collection::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -86,11 +86,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view ('user.edit', compact('user'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -100,7 +100,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+                $this->validate($request, [
+            'name'=> 'required|string|max:50',
+            'image_id'=> 'nullable|integer',
+            'biography'=> 'nullable|string',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = storage_path('app/public/img/' . $filename);
+            $image->move(storage_path('app/public/img/'), $filename);
+        
+            $savedImage = Image::create(['name' => $filename]);
+            $user->image()->associate($savedImage);
+        }
+
+        $user->biography = $request->biography;
+
+        $user->save();
+
+        return redirect()->route('user.show', $user->id)->with('success', 'Utilisateur modifié avec succès !');
     }
 
     /**

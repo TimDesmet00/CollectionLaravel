@@ -4,11 +4,21 @@
 
 <h2>Profil</h2>
 
-<article class="show">
-    <p class="full">{{ $user->name }}</p>
-    <img src="{{ asset('storage/img/' . $user->image->name) }}" alt="Image de profil de l'utilisateur">
-    <p class="info">Biographie: {{ $user->biography }}</p>
-    <p class="info">Email: {{ $user->email }}</p>
+<article class="show show-user">
+    <p class="name">{{ $user->name }}</p>
+    <div class="grid">
+        <img src="{{ asset('storage/img/' . $user->image->name) }}" alt="Image de profil de l'utilisateur">
+        <div class="title">
+            <p>Biographie:</p>
+            <p class="biography">{{ $user->biography }}</p>
+        </div>
+    </div>
+    <p class="mail">Email: {{ $user->email }}</p>
+
+    <div class="favoris">
+        <h3>Favoris:</h3>
+        
+    </div>
     
 
     <div class="link">

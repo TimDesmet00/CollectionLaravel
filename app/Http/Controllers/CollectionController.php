@@ -52,7 +52,7 @@ class CollectionController extends Controller
 
         $collection->shortname = $request->shortname;
         $collection->fullname = $request->fullname;
-        $collection->slug = $request->slug;
+        $collection->slug = $request->shortname;
         if ($request->has('image_id')) {
             $image = Image::find($request->image_id);
             if ($image) {

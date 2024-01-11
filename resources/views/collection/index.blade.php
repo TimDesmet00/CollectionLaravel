@@ -8,11 +8,11 @@
         <div class="card">
             <h3>{{ $item->shortname }}</h3>
             <div class="img">
-                <img src="{{ Storage::url($item->image) }}" alt="{{ $item->shortname }}">
+                <img src="{{ asset('storage/img/' . $item->image->name) }}" alt="{{ $item->shortname }}">
             </div>
-            <p> Genre: {{ $item->firstgender }} 
-                @if(!empty($item->secondgender)) / {{ $item->secondgender }} @endif
-                @if(!empty($item->thirdgender)) / {{ $item->thirdgender }} @endif
+            <p> Genre: 
+                {{ implode(' / ', $item->genres->pluck('name')->toArray()) }}
+               
             </p>
             <p>Sortie en: {{ $item->year }}</p>
             <div class="link">

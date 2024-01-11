@@ -6,11 +6,10 @@
     <!-- <h2>{{ $collection->shortname }}</h2> -->
     <p class="full">{{ $collection->fullname }}</p>
     <div class="img">
-        <img src="{{ Storage::url($collection->image) }}" alt="{{ $collection->shortname }}">
+        <img src="{{ asset('storage/img/' . $collection->image->name) }}" alt="{{ $collection->shortname }}">
     </div>
-    <p class="info"> Genre: {{ $collection->firstgender }} 
-        @if(!empty($collection->secondgender)) / {{ $collection->secondgender }} @endif
-        @if(!empty($collection->thirdgender)) / {{ $collection->thirdgender }} @endif
+    <p class="info"> Genre: 
+        {{ implode(' / ', $collection->genres->pluck('name')->toArray()) }}
     </p>
     <p class="info">Sortie en: {{ $collection->year }}</p>
     <p class="info">Synopsis: {{ $collection->description }}</p>

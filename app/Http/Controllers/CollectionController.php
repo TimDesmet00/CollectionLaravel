@@ -47,7 +47,7 @@ class CollectionController extends Controller
                 'required',
                 'string',
                 'max:50',
-                Rule::unique('collections')->ignore($collection->id),
+                Rule::unique('collections'),
             ],
             'fullname' => 'required|string|max:255',
             'image_id' => 'nullable|integer',
@@ -73,23 +73,18 @@ class CollectionController extends Controller
             $collection->image()->associate($savedImage);
         }
 
-        if ($request->has('genres')) {
-            $genre_ids = array_map('intval', $request->genres);
-            $collection->genres()->sync($genre_ids);
-        }
-        
         $collection->user_id = Auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
         $collection->link = $request->link;
 
-        // $collection->save();
-        try {
-            $collection->save();
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
+        $collection->save();
 
+        if ($request->has('genres')) {
+            $genre_ids = array_map('intval', $request->genres);
+            $collection->genres()->sync($genre_ids);
+        }
+        
         return redirect()->route('collection.index');
     }
 

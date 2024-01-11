@@ -14,10 +14,9 @@ class Collection extends Model
     protected $fillable = [
         'shortname',
         'fullname',
-        'image',
-        'firstgender',
-        'secondgender',
-        'thirdgender',
+        'slug',
+        'image_id',
+        'user_id',
         'year',
         'description',
         'link'

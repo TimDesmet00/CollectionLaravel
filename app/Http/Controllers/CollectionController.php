@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Image;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,9 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        return view('collection.create');
+        $genres=Genre::all();
+        // dd($genres);
+        return view('collection.create', ['genres' => $genres]);
     }
 
     /**
@@ -37,12 +40,11 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request, [
-            'shortname' => 'required|string|max:50',
+            'shortname' => 'required|string|max:50|unique:collections',
             'fullname' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:collections',
             'image_id' => 'nullable|integer',
-            'user_id' => 'required|integer',
             'year'=> 'required|integer',
             'description' => 'required',
             'link' => 'nullable|string'
@@ -61,12 +63,25 @@ class CollectionController extends Controller
                 // Handle the case where the image does not exist
             }
         }
+        if ($request->has('genres')) {
+            foreach ($request->genres as $genre_id) {
+                $genre = Genre::find($genre_id);
+                if ($genre) {
+                    $collection->genres()->attach($genre);
+                }
+            }
+        }
         $collection->user_id = Auth::id();
         $collection->year = $request->year;
         $collection->description = $request->description;
         $collection->link = $request->link;
 
-        $collection->save();
+        // $collection->save();
+        try {
+            $collection->save();
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
 
         return redirect()->route('collection.index');
     }
@@ -90,7 +105,10 @@ class CollectionController extends Controller
      */
     public function edit($id)
     {
-        return view('collection.edit', ['collection' => Collection::findOrFail($id)]);
+        $collection = Collection::findOrFail($id);
+        $genres = Genre::all();
+
+        return view('collection.edit', ['collection' => $collection, 'genres' => $genres]);
     }
 
     /**

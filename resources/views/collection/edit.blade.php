@@ -24,19 +24,15 @@
         </div>
 
         <div>
-            <label for="firstgender">Premier Genre:</label>
-            <input type="text" name="firstgender" id="firstgender" value="{{ $collection->firstgender }}">
+            <label for="genres">Genres:</label>
+            <select name="genres[]" id="genres" multiple>
+                @foreach($genres as $genre)
+                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                @endforeach
+            </select>
         </div>
 
-        <div>
-            <label for="secondgender">Deuxième Genre:</label>
-            <input type="text" name="secondgender" id="secondgender" value="{{ $collection->secondgender }}">
-        </div>
-
-        <div>
-            <label for="thirdgender">Troisième Genre:</label>
-            <input type="text" name="thirdgender" id="thirdgender" value="{{ $collection->thirdgender }}">
-        </div>
+        <button id="add-genre" type="button">Ajouter un genre</button>
 
         <div>
             <label for="year">Année de Sortie</label>

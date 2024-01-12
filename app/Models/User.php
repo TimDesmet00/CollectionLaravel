@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Collection;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -55,6 +57,24 @@ class User extends Authenticatable implements MustVerifyEmail
     public function collections()
     {
         return $this->hasMany(Collection::class);
+    }
+
+    // Ajouter une collection aux favoris
+    public function addFavorite(Collection $collection)
+    {
+        return $this->favoriteCollections()->attach($collection->id);
+    }
+
+    // Supprimer une collection des favoris
+    public function removeFavorite(Collection $collection)
+    {
+        return $this->favoriteCollections()->detach($collection->id);
+    }
+
+    // Vérifier si une collection est un favori
+    public function isFavorite(Collection $collection)
+    {
+        return $this->favoriteCollections()->where('id', $collection->id)->exists();
     }
 
     

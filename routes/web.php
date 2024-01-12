@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FavoritesController;
 
 
 /*
@@ -60,3 +61,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::post('/favorites/{collection}', [FavoritesController::class, 'store'])->name('favorites.store')->middleware(['auth', 'verified']);
+Route::delete('/favorites/{collection}', [FavoritesController::class, 'destroy'])->name('favorites.destroy')->middleware(['auth', 'verified']);

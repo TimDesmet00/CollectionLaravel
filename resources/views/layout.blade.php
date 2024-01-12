@@ -7,6 +7,7 @@
         <meta name="keywords" content="collection, anime, Laravel">  <!--mot cléf pour le moteur de recherche: keyword1, keyword2, ...-->
         <meta name="author" content="Desmet Tim">   <!--auteur de la page: auteur1, auteur2, ...-->
         <meta name="viewport" content="width=device-width, initial-scale=1">  <!--pour garder les proportions sur différent affichage-->
+        <script src="https://kit.fontawesome.com/2f4f9d9f29.js" crossorigin="anonymous"></script>
         @vite(["resources/css/app.css", "resources/scss/app.scss", "resources/js/app.js",])
     </head>
     <body>

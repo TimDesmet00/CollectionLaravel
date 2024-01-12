@@ -1,6 +1,7 @@
 
 .card
 {
+    position: relative;
     font-size: 1.1em;
     border: 3px solid #97AABD;
     border-radius: 10px;
@@ -12,6 +13,13 @@
     &:hover
     {
         box-shadow: 10px 10px 10px #000;
+    }
+
+    #add-favorite
+    {
+        position: absolute;
+        right: 5%;
+        scale: 1.5;        
     }
 
     h3

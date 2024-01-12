@@ -74,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // Vérifier si une collection est un favori
     public function isFavorite(Collection $collection)
     {
-        return $this->favoriteCollections()->where('id', $collection->id)->exists();
+        return $this->favoriteCollections()->where('collection_id', $collection->id)->exists();
     }
 
     

@@ -31,7 +31,6 @@ export function addFavorite() {
                         },
                     });
                 }
-                // let toggleEvent = new ToggleEvent();
             });
         });
     });

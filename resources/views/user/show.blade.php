@@ -17,7 +17,31 @@
 
     <div class="favoris">
         <h3>Favoris:</h3>
-        
+        <div class="collection-container">
+            @foreach($user->favoriteCollections as $collection)
+                <div class="collection">
+                    <h4>{{ $collection->shortname }}</h4>
+                    <div class="img">
+                    <img src="{{ asset('storage/img/' . $collection->image->name) }}" alt="{{ $collection->shortname }}">
+                    </div>
+                    <p> Genre: 
+                        {{ implode(' / ', $collection->genres->pluck('name')->toArray()) }}
+                    
+                    </p>
+                    <p>Sortie en: {{ $collection->year }}</p>
+                    <div class="link">
+                        <button class="btn" onclick="location.href='{{ $collection->link }}'">Info</button>
+                        <button class="btn" onclick="location.href='{{ route('collection.edit', $collection->id) }}'">Modifier</button>
+                        <button class="btn" onclick="location.href='{{ route('collection.show', $collection->id) }}'">Afficher</button>
+                        <form action="{{ route('collection.destroy', $collection->id) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette collection ?')">
+                            @csrf
+                            @method('DELETE')
+                            <input class="btn" type="submit" value="Supprimer">
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
     
 
